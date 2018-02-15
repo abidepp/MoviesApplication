@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:id="@+id/review_row_image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/review_row_leftMargin"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/review_row_title"
+        android:layout_alignTop="@+id/review_row_image"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/review_row_image"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/review_row_rating"
+        android:layout_below="@+id/review_row_title"
+        android:layout_alignLeft="@+id/review_row_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Overview:"
+        android:id="@+id/review_row_overview"
+        android:layout_below="@+id/review_row_rating"
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/review_row_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/review_row_reviews"
+        android:layout_below="@+id/review_row_overview"
+        android:layout_alignLeft="@+id/review_row_title"/>
+</RelativeLayout>

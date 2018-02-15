@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/admin/Downloads/MyApplication 2/app/build/intermediates/res/merged/debug/menu/activity_main_drawer.xml",
+        "source": "/Users/admin/Downloads/MyApplication 2/app/src/main/res/menu/activity_main_drawer.xml"
+    },
+    {
+        "merged": "/Users/admin/Downloads/MyApplication 2/D:\\android\\android-sdk-samples-master\\android-sdk-samples-master\\MyApplication\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_main_drawer.xml",
+        "source": "/Users/admin/Downloads/MyApplication 2/D:\\android\\android-sdk-samples-master\\android-sdk-samples-master\\MyApplication\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+    },
+    {
+        "merged": "/Users/admin/Downloads/MyApplication 2/D:\\android\\android-sdk-samples-master\\android-sdk-samples-master\\MyApplication\\app\\build\\intermediates\\res\\merged\\debug\\menu\\overflow_menu_items.xml",
+        "source": "/Users/admin/Downloads/MyApplication 2/D:\\android\\android-sdk-samples-master\\android-sdk-samples-master\\MyApplication\\app\\src\\main\\res\\menu\\overflow_menu_items.xml"
+    },
+    {
+        "merged": "/Users/admin/Downloads/MyApplication 2/app/build/intermediates/res/merged/debug/menu/overflow_menu_items.xml",
+        "source": "/Users/admin/Downloads/MyApplication 2/app/src/main/res/menu/overflow_menu_items.xml"
+    }
+]
