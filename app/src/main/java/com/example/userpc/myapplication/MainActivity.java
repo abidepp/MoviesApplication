@@ -3,6 +3,8 @@ package com.example.userpc.myapplication;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolBar;
     ViewPager mViewPager;
     SlidingTabLayout mSlidingTabLayout;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     Intent serviceIntent;
 
     @Override
@@ -25,14 +29,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set up drawerlayout
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        //enable location service
         serviceIntent = new Intent(this, MyLocationService.class);
         startService(serviceIntent);
         Log.i("location service","intent call done");
 
-        toolBar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolBar);
-        toolBar.showOverflowMenu();
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        toolBar = (Toolbar) findViewById(R.id.toolBar);
+//        setSupportActionBar(toolBar);
+//        toolBar.showOverflowMenu();
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setNavigationViewListener();
 
@@ -63,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.menuSettings)
         {
             Toast.makeText(this,"settings clicked", Toast.LENGTH_SHORT).show();
+        }
+
+        if(actionBarDrawerToggle.onOptionsItemSelected(item))
+        {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

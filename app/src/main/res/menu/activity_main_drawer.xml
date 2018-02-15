@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/Regional"
-            android:icon="@drawable/ic_chevron_right"
-            android:title="Regional" />
-        <item
-            android:id="@+id/State"
-            android:icon="@drawable/ic_chevron_right"
-            android:title="State" />
-        <item
-            android:id="@+id/India"
-            android:icon="@drawable/ic_chevron_right"
-            android:title="India" />
-
-        <item
-            android:id="@+id/World"
-            android:icon="@drawable/ic_chevron_right"
-            android:title="World" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_chevron_right"
-            android:title="Settings" />
-    </group>
-
     <item android:title="Contact Us">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_chevron_right"
-                android:title="reviews" />
+                android:title="Reviews" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_chevron_right"
-                android:title="mainPage" />
+                android:title="Movies" />
             <item
                 android:id="@+id/nav_writeReview"
                 android:icon="@drawable/ic_chevron_right"
-                android:title="ReviewIT" />
+                android:title="PostReview" />
+            <item
+                android:id="@+id/nav_contactUs"
+                android:icon="@drawable/ic_chevron_right"
+                android:title="About" />
         </menu>
     </item>
+
+
 
 </menu>

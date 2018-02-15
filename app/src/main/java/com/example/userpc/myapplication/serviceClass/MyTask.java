@@ -1,5 +1,8 @@
 package com.example.userpc.myapplication.serviceClass;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -7,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.userpc.myapplication.Interface.sendDataTOActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +33,22 @@ import java.util.Map;
  */
 public class MyTask extends AsyncTask<String, String, String> {
 
+    sendDataTOActivity msendDataTOActivity;
+    String progressData = "";
+    public MyTask(Activity activity)
+    {
+        msendDataTOActivity = (sendDataTOActivity) activity;
+       // msendDataTOActivity.sendData();
 
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressData = "getting content";
+        msendDataTOActivity.sendData(progressData);
+
+    }
 
 
     @Override
@@ -59,6 +79,7 @@ public class MyTask extends AsyncTask<String, String, String> {
                 int progress = 0;
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     stringBuilder.append(inputLine);
+                    publishProgress("fetching...");
                 }
                 stringBuilder.append("////");
 
@@ -88,17 +109,18 @@ public class MyTask extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-        }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-
-    @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
+        msendDataTOActivity.sendData(values[0]);
     }
+
+
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        progressData = "completed";
+        msendDataTOActivity.sendData(progressData);
+        }
+
+
 }

@@ -42,5 +42,16 @@
         </android.support.v7.widget.RecyclerView>
 
     </HorizontalScrollView>
-/>
+
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalScrollView_upcoming"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/updateprogress"
+        />
+
+
 </RelativeLayout>

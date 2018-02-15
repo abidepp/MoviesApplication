@@ -2,6 +2,9 @@ package com.example.userpc.myapplication.supportclasses;
 
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by user pc on 1/3/2018.
  */
@@ -16,5 +19,10 @@ public class Information  {
     public String reviewsoverview;
 
     public String key;
+
+    public class ListData
+    {
+        public List<List> moviesDataList = new ArrayList<>();
+    }
 
 }
