@@ -1,7 +1,9 @@
 package com.example.userpc.myapplication;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.userpc.myapplication.serviceClass.MyLocationService;
@@ -31,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //set up drawerlayout
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open, R.string.close);
+        toolBar = (Toolbar) findViewById(R.id.toolBar);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, toolBar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -40,11 +46,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startService(serviceIntent);
         Log.i("location service","intent call done");
 
-//        toolBar = (Toolbar) findViewById(R.id.toolBar);
-//        setSupportActionBar(toolBar);
-//        toolBar.showOverflowMenu();
+
+        setSupportActionBar(toolBar);
+        toolBar.showOverflowMenu();
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+     //   actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_chevron_right);
+     //   actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+
+
+
 
         setNavigationViewListener();
 

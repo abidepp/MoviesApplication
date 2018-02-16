@@ -101,8 +101,12 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
         List<List> main = new ArrayList<>();
         List<Information.ListData> dummy = new ArrayList<>();
 
+        int index = 0;  // used in the for loop for obtaining main List
+
+
         //to seperate the upcoming movies from New Movies
         String[] seperatedData = result.split("////");
+
 //        Log.i("test","seperatedData of 0----->"+seperatedData[0]);
 //        Log.i("test","seperatedData of 1----->"+seperatedData[1]);
 //        Log.i("test","seperatedData length----->"+seperatedData.length);
@@ -117,6 +121,11 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
 
                 JSONArray movies = jsonObject.getJSONArray("results");
 
+                if(i == 0)
+                {
+                    index = movies.length();  //to seperate upcoming movies from new movies in  data value to the main List
+                }
+
                 for (int j = 0; j < movies.length(); j++) {
                     JSONObject m = movies.getJSONObject(j);
 
@@ -130,22 +139,18 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
                     data.add(current);
                 }
 
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            Information currentOuterObject = new Information();
-            Information.ListData mMoviesDataList = currentOuterObject. new ListData();
-            mMoviesDataList.moviesDataList.add(data);
 
-            Log.i("test","mMoviesDataList.moviesDataList  length----->"+mMoviesDataList.moviesDataList);
-
-            main.add(data);
-            dummy.add(mMoviesDataList);
         }
-        Log.i("test","main.add(data) length----->"+main.size());
-        Log.i("test","main.add(data) length----->"+main);
-        Log.i("test","dummy.add(data) length----->"+dummy);
+
+        main.add(data.subList(0,index));
+        main.add(data.subList(index,data.size()));
+
+
 
         return main;
 
