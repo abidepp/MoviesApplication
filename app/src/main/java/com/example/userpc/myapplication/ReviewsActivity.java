@@ -26,7 +26,7 @@ public class ReviewsActivity extends AppCompatActivity {
 
     MyReviewsAdapter adapter;
     //get the api_key fro constants class
-    Constants getKey = new Constants();
+    Constants mConstants = new Constants();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class ReviewsActivity extends AppCompatActivity {
 
         String[] myUrl = new String[1];
         //Some url endpoint that you may have
-        myUrl[0] = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + getKey.getApiKey() + "&language=en-US&page=1";
-        String result = mMoviesActivity.getMoviesData(myUrl);
+        myUrl[0] = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + mConstants.getApiKey() + "&language=en-US&page=1";
+        String result = mConstants.getMoviesData(myUrl);
 
         //get list for results to be populated in reviews activity
         List<Information> data = this.getData(result);

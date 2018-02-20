@@ -15,9 +15,19 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.userpc.myapplication.serviceClass.MyLocationService;
+import com.example.userpc.myapplication.supportclasses.Constants;
+import com.example.userpc.myapplication.supportclasses.Information;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -27,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Intent serviceIntent;
+    List<String> MovieNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +52,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        //enable location service
-        serviceIntent = new Intent(this, MyLocationService.class);
-        startService(serviceIntent);
-        Log.i("location service","intent call done");
-
-
         setSupportActionBar(toolBar);
         toolBar.showOverflowMenu();
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-     //   actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_chevron_right);
-     //   actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
+        //   actionBarDrawerToggle.setHomeAsUpIndicator(R.drawable.ic_chevron_right);
+        //   actionBarDrawerToggle.setDrawerIndicatorEnabled(false);
 
 
+
+
+
+        //enable location service
+        serviceIntent = new Intent(this, MyLocationService.class);
+        startService(serviceIntent);
+        Log.i("location service","intent call done");
 
 
         setNavigationViewListener();
@@ -66,8 +78,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
         mSlidingTabLayout.setViewPager(mViewPager);
 
+        //to get the movie names when the application starts for search functionality
+        Constants mConstants = new Constants();
+        mConstants.getConfiguration(); // call this before you call getMovieNames() for the movie names in search functionality
+
+
 
     }
+
+//    @Override
+//    public void setContentView(int layoutResID)
+//    {
+//        DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
+//        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+//        getLayoutInflater().inflate(layoutResID, linearLayout, true);
+//        super.setContentView(fullView);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
+//        setSupportActionBar(toolbar);
+//        setTitle("Activity Title");
+//    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,4 +158,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return false;
     }
+
+
 }

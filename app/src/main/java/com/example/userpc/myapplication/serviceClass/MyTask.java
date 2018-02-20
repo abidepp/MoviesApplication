@@ -35,18 +35,18 @@ public class MyTask extends AsyncTask<String, String, String> {
 
     sendDataTOActivity msendDataTOActivity;
     String progressData = "";
-    public MyTask(Activity activity)
-    {
-        msendDataTOActivity = (sendDataTOActivity) activity;
-       // msendDataTOActivity.sendData();
-
-    }
+//    public MyTask(Activity activity)
+//    {
+//        msendDataTOActivity = (sendDataTOActivity) activity;
+//       // msendDataTOActivity.sendData();
+//
+//    }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
         progressData = "getting content";
-        msendDataTOActivity.sendData(progressData);
+      //  msendDataTOActivity.sendData(progressData);
 
     }
 
@@ -111,7 +111,7 @@ public class MyTask extends AsyncTask<String, String, String> {
     @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
-        msendDataTOActivity.sendData(values[0]);
+     //   msendDataTOActivity.sendData(values[0]);
     }
 
 
@@ -119,7 +119,7 @@ public class MyTask extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         progressData = "completed";
-        msendDataTOActivity.sendData(progressData);
+     //   msendDataTOActivity.sendData(progressData);
         }
 
 

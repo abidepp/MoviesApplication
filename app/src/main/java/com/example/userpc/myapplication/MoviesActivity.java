@@ -1,6 +1,7 @@
 package com.example.userpc.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class MoviesActivity extends AppCompatActivity implements ItemClickListener, sendDataTOActivity{
+public class MoviesActivity extends MainActivity implements ItemClickListener, sendDataTOActivity{
 
     private MyAdapter myadapterObject_upcoming;
     private MyAdapter myadapterObject_nowPlaying;
@@ -41,7 +43,7 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
 
 
     //get the api_key fro constants class
-    Constants getKey = new Constants();
+    Constants mConstants = new Constants();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +56,13 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
 
 
 
-        String[] myUrl = new String[2];
-        //Some url endpoint that you may have
-        myUrl[0] = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + getKey.getApiKey() + "&language=en-US&page=1";
-        myUrl[1] = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ getKey.getApiKey() +"&language=en-US&page=1";
+//        String[] myUrl = new String[2];
+//        //Some url endpoint that you may have
+//        myUrl[0] = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + mConstants.getApiKey() + "&language=en-US&page=1";
+//        myUrl[1] = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ mConstants.getApiKey() +"&language=en-US&page=1";
 
         //String to place our result in
-        String result = getMoviesData(myUrl);
+        String result = mConstants.getMoviesData(mConstants.getNewAndUpcomingMoviesUrl());
 
 
 
@@ -156,22 +158,7 @@ public class MoviesActivity extends AppCompatActivity implements ItemClickListen
 
     }
 
-    public String getMoviesData(String[] myUrl)
-    {
-        String result = "";
-        //Instantiate new instance of our class
-        MyTask getRequest = new MyTask(this);
-        //Perform the doInBackground method, passing in our url
-        try {
-            result = getRequest.execute(myUrl).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
 
-        return result;
-    }
 
     @Override
     public void onClick(View view, int position) {
