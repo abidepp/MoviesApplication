@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class MoviesActivity extends MainActivity implements ItemClickListener, sendDataTOActivity{
+public class MoviesActivity extends BaseActivity implements ItemClickListener, sendDataTOActivity{
 
     private MyAdapter myadapterObject_upcoming;
     private MyAdapter myadapterObject_nowPlaying;
@@ -48,7 +48,9 @@ public class MoviesActivity extends MainActivity implements ItemClickListener, s
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies);
+        //setContentView(R.layout.activity_movies);
+
+        getLayoutInflater().inflate(R.layout.activity_movies,frameLayout);
 
         RecyclerView recyclerView_upcoming = (RecyclerView) findViewById(R.id.recyclerView_upcoming);
         RecyclerView recyclerView_nowplaying = (RecyclerView) findViewById(R.id.recyclerView_nowplaying);

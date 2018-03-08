@@ -16,7 +16,7 @@ import android.widget.SearchView;
 
 import com.example.userpc.myapplication.supportclasses.Constants;
 
-public class WriteReviewActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class WriteReviewActivity extends BaseActivity implements SearchView.OnQueryTextListener {
 
     SearchView searchView;
     Button reviewItButton;
@@ -25,7 +25,9 @@ public class WriteReviewActivity extends AppCompatActivity implements SearchView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_review);
+        //setContentView(R.layout.activity_write_review);
+
+        getLayoutInflater().inflate(R.layout.activity_write_review,frameLayout);
 
         reviewItButton = (Button) findViewById(R.id.reviewitbutton);
         searchView = (SearchView) findViewById(R.id.searchView);

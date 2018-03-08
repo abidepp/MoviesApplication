@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ReviewsActivity extends AppCompatActivity {
+public class ReviewsActivity extends BaseActivity {
 
     MyReviewsAdapter adapter;
     //get the api_key fro constants class
@@ -31,7 +31,9 @@ public class ReviewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reviews);
+        //setContentView(R.layout.activity_reviews);
+
+        getLayoutInflater().inflate(R.layout.activity_reviews, frameLayout);
 
        // progressBar = (ProgressBar) findViewById(R.id.progressBar);
         RecyclerView recyclerView_reviews = (RecyclerView) findViewById(R.id.recyclerView_reviews);
