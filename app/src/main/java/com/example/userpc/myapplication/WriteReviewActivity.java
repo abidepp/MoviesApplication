@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
     SearchView searchView;
     Button reviewItButton;
     ListView list;
+    String selectedItem = ""; // to get the movie ID from the movie name in list view
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,19 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
 
         list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mConstants.getMovieNames()));
         list.setTextFilterEnabled(true);
-        setupSearchView();
+        setupSearchView(selectedItem);
+
+
+        //on list itemclick
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                selectedItem = (String) list.getItemAtPosition(i);
+                setupSearchView(selectedItem);
+            }
+        });
 
 
 
@@ -82,12 +96,23 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
         });
     }
 
-    public void setupSearchView()
+    public void setupSearchView(String searchValue)
     {
-        searchView.setIconifiedByDefault(false);
-        searchView.setOnQueryTextListener(this);
-        searchView.setSubmitButtonEnabled(false);
-        searchView.setQueryHint(getString(R.string.search_Movie_Names));
+        if(searchValue =="")
+        {
+            searchView.setIconifiedByDefault(false);
+            searchView.setOnQueryTextListener(this);
+            searchView.setSubmitButtonEnabled(false);
+            searchView.setQueryHint(getString(R.string.search_Movie_Names));
+        }
+        else
+        {
+            searchView.setQuery("", false);
+            searchView.setQuery(searchValue, true);
+            //to clear the list and put it back to invisible state
+            list.clearTextFilter();
+            list.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

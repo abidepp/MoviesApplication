@@ -62,20 +62,43 @@ public class MainActivity extends BaseActivity{
         Constants mConstants = new Constants();
         mConstants.getConfiguration(); // call this before you call getMovieNames() for the movie names in search functionality
 
-
+        //String to place our result in global movies list
+        String result = mConstants.getMoviesData(mConstants.getNewAndUpcomingMoviesUrl());
 
     }
 
-//    @Override
-//    public void setContentView(int layoutResID)
-//    {
-//        DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_main, null);
-//        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-//        getLayoutInflater().inflate(layoutResID, linearLayout, true);
-//        super.setContentView(fullView);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
-//        setSupportActionBar(toolbar);
-//        setTitle("Activity Title");
-//    }
+    public List<Information> getData(String result) {
+        List<Information> data = new ArrayList<Information>();
+
+        int index = 0;  // used in the for loop for obtaining main List
+
+        JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(result);
+
+                Log.i("test", "final jsonObject---->" + jsonObject);
+
+                JSONArray movies = jsonObject.getJSONArray("results");
+
+
+                for (int j = 0; j < movies.length(); j++) {
+                    JSONObject m = movies.getJSONObject(j);
+
+                    String title = m.getString("original_title");
+                    String poster = m.getString("poster_path");
+
+
+                    Information current = new Information();
+                    current.image = poster;
+                    current.title = title;
+                    data.add(current);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        return data;
+
+    }
 
 }

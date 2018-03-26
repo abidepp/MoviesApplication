@@ -18,6 +18,8 @@ public class Information  {
     public String reviewsposter;
     public String reviewsoverview;
 
+    public String postReviewMovieID;
+
     public String key;
 
     public class ListData
