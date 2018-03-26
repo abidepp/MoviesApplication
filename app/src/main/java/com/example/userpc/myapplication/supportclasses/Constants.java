@@ -9,7 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -22,6 +24,7 @@ public class Constants {
     private String[] myUrl = {"https://api.themoviedb.org/3/movie/upcoming?api_key=" + getApiKey() + "&language=en-US&page=1",
                       "https://api.themoviedb.org/3/movie/now_playing?api_key="+ getApiKey() +"&language=en-US&page=1"};
     private static List<String> MovieNames; //for search function in reviews activity
+    private static Map<String, String> titleAndIdMap = new HashMap<>();
 
 
     public String getApiKey()
@@ -78,6 +81,11 @@ public class Constants {
         return MovieNames;
     }
 
+    public Map<String, String> getTitleAndIdMap()
+    {
+        return titleAndIdMap;
+    }
+
     public List<String> getData(String result)
     {
 
@@ -96,9 +104,10 @@ public class Constants {
                 JSONObject m = movies.getJSONObject(j);
 
                 String title = m.getString("original_title");
-                String movie_id = m.getString("");
+                String movie_id = m.getString("id");
 
                 MovieNames.add(title);
+                titleAndIdMap.put(title, movie_id);
             }
 
         } catch (JSONException e) {

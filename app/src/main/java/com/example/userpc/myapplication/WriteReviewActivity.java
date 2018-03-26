@@ -14,8 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.userpc.myapplication.supportclasses.Constants;
+
+import java.util.Iterator;
+import java.util.Map;
 
 public class WriteReviewActivity extends BaseActivity implements SearchView.OnQueryTextListener {
 
@@ -37,7 +41,7 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
         list.setVisibility(View.INVISIBLE);
 
         //to get the MovieNames list from the constants file
-        Constants mConstants = new Constants();
+        final Constants mConstants = new Constants();
 
         Log.i("test","data of movie names---->"+mConstants.getMovieNames());
         Log.i("test","size of movie names---->"+mConstants.getMovieNames().size());
@@ -63,36 +67,61 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
         reviewItButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog myDialog;
-                myDialog = new Dialog(view.getContext());
-                myDialog.setContentView(R.layout.submit_review);
-                myDialog.setCancelable(true);
-                myDialog.setCanceledOnTouchOutside(true);
-                Button submit = (Button) myDialog.findViewById(R.id.submitreview);
-
-                EditText movieID = (EditText) myDialog.findViewById(R.id.movieidedit);
-                EditText shortReview = (EditText) myDialog.findViewById(R.id.shortreviewedit);
-                EditText fullReview = (EditText) myDialog.findViewById(R.id.fullreviewedit);
-                ImageButton close = (ImageButton) myDialog.findViewById(R.id.closeimageButton);
-
-                close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        myDialog.dismiss();
-                    }
-                });
-                myDialog.show();
-
-                submit.setOnClickListener(new View.OnClickListener()
+                if(selectedItem != "")
                 {
+                    final Dialog myDialog;
+                    myDialog = new Dialog(view.getContext());
+                    myDialog.setContentView(R.layout.submit_review);
+                    myDialog.setCancelable(true);
+                    myDialog.setCanceledOnTouchOutside(true);
+                    Button submit = (Button) myDialog.findViewById(R.id.submitreview);
 
-                    @Override
-                    public void onClick(View v)
-                    {
-                        //your login calculation goes here
+                    final EditText movieID = (EditText) myDialog.findViewById(R.id.movieidedit);
+                    final EditText shortReview = (EditText) myDialog.findViewById(R.id.shortreviewedit);
+                    final EditText fullReview = (EditText) myDialog.findViewById(R.id.fullreviewedit);
+                    ImageButton close = (ImageButton) myDialog.findViewById(R.id.closeimageButton);
+
+                    close.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            myDialog.dismiss();
+                        }
+                    });
+
+                    //to populate the popup with movie ID
+                    Map<String, String> map  = mConstants.getTitleAndIdMap();
+
+                    Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+                    while (iterator.hasNext()) {
+                        Map.Entry<String, String> entry = iterator.next();
+                        if(selectedItem == entry.getKey())
+                        {
+                            movieID.setText(entry.getValue());
+                        }
                     }
-                });
-            }
+
+                    myDialog.show();
+
+                    submit.setOnClickListener(new View.OnClickListener()
+                    {
+
+                        @Override
+                        public void onClick(View v)
+                        {
+                            //your submit review calculation goes here
+                            if(movieID.getText().toString() != "" && shortReview.getText().toString() !="" && fullReview.getText().toString() != "")
+                            {
+                                postReview(movieID.getText().toString().trim());
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"please select the movie name from list to post review", Toast.LENGTH_LONG).show();
+                }
+                }
+
         });
     }
 
@@ -139,5 +168,10 @@ public class WriteReviewActivity extends BaseActivity implements SearchView.OnQu
             list.setFilterText(newText.toString());
         }
         return true;
+    }
+
+    public void postReview(String review)
+    {
+
     }
 }

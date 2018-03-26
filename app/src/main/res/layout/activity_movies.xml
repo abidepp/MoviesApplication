@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.userpc.myapplication.MoviesActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="live shows"
+        android:textSize="50px"
+        android:textColor="#ff0000"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="20dp"/>
 
 
 <HorizontalScrollView
     android:id="@+id/horizontalScrollView_upcoming"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="100dp">
+    android:layout_marginTop="10dp">
 
 
     <android.support.v7.widget.RecyclerView
@@ -23,13 +33,22 @@
 
 </HorizontalScrollView>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upcoming shows"
+        android:textStyle="normal|bold"
+        android:layout_marginTop="20dp"
+        android:textSize="50px"
+        android:textColor="#ff0000"
+        />
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView_nowPlaying"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/horizontalScrollView_upcoming"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp">
+        android:layout_marginTop="10dp">
 
 
         <android.support.v7.widget.RecyclerView
@@ -52,4 +71,4 @@
         />
 
 
-</RelativeLayout>
+</LinearLayout>
