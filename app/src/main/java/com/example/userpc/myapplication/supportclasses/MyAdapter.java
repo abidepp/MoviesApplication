@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.userpc.myapplication.Interface.ItemClickListener;
 import com.example.userpc.myapplication.R;
@@ -35,11 +36,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     List<Map> reviewsData = Collections.emptyList();
     Bitmap bmp = null;//for loading movie poster from imageLoadTask class
     private ItemClickListener clickListener;
+    Context context;
 
     public MyAdapter(Context context, List<Information> data)
     {
         inflater = LayoutInflater.from(context);
         this.data = data;
+        this.context = context;
     }
 
 
@@ -112,6 +115,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
         public void onClick(View view) {
             if(clickListener != null)
             clickListener.onClick(view,getAdapterPosition());
+
+            Toast.makeText(context, "position clicked-->"+getAdapterPosition(),Toast.LENGTH_LONG).show();
+
         }
     }
 }

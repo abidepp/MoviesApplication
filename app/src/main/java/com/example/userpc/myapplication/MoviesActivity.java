@@ -64,7 +64,7 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
 //        myUrl[1] = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ mConstants.getApiKey() +"&language=en-US&page=1";
 
         //String to place our result in
-        String result = mConstants.getMoviesData(mConstants.getNewAndUpcomingMoviesUrl());
+        String result = mConstants.getMoviesData(mConstants.getNewAndUpcomingMoviesUrl(), this);
 
 
 
@@ -82,6 +82,8 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
         //upcoming movies
         recyclerView_upcoming.setAdapter(myadapterObject_upcoming);
         recyclerView_upcoming.setLayoutManager(horizontalLayoutManager_upcoming);
+
+
 
 
 

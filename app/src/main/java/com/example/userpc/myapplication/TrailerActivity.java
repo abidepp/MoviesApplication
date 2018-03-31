@@ -37,7 +37,7 @@ public class TrailerActivity extends AppCompatActivity {
         url[0] = "https://api.themoviedb.org/3/movie/157336/videos?api_key="+getKey.getApiKey()+"&language=en-US";// get the movie ID dynamically
 
         Constants mConstants = new Constants();
-        String GetKey = mConstants.getMoviesData(url);
+        String GetKey = mConstants.getMoviesData(url, this);
 
         String trailerUrl = "https://www.youtube.com/watch?v="+GetKey;
         videoView.setVideoPath(trailerUrl);

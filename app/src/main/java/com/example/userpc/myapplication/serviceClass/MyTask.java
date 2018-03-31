@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.userpc.myapplication.Interface.sendDataTOActivity;
+import com.example.userpc.myapplication.supportclasses.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,20 +35,22 @@ import java.util.Map;
  */
 public class MyTask extends AsyncTask<String, String, String> {
 
-    sendDataTOActivity msendDataTOActivity;
+    Constants msendDataTOActivity = new Constants();
     String progressData = "";
-//    public MyTask(Activity activity)
-//    {
-//        msendDataTOActivity = (sendDataTOActivity) activity;
-//       // msendDataTOActivity.sendData();
-//
-//    }
+    Activity activity;
+    public MyTask(Activity activity)
+    {
+      //  msendDataTOActivity = (sendDataTOActivity) activity;
+        this.activity = activity;
+        //msendDataTOActivity.sendData("", activity);
+
+    }
 
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressData = "getting content";
-      //  msendDataTOActivity.sendData(progressData);
+        progressData = "fetching Data";
+        msendDataTOActivity.sendData(progressData, activity, true);
 
     }
 
@@ -111,7 +115,7 @@ public class MyTask extends AsyncTask<String, String, String> {
     @Override
     protected void onProgressUpdate(String... values) {
         super.onProgressUpdate(values);
-     //   msendDataTOActivity.sendData(values[0]);
+        msendDataTOActivity.sendData(values[0], activity, false);
     }
 
 
@@ -119,7 +123,7 @@ public class MyTask extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         progressData = "completed";
-     //   msendDataTOActivity.sendData(progressData);
+        msendDataTOActivity.sendData(progressData, activity, false);
         }
 
 

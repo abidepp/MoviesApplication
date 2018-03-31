@@ -1,7 +1,12 @@
 package com.example.userpc.myapplication.supportclasses;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.example.userpc.myapplication.R;
 import com.example.userpc.myapplication.serviceClass.MyTask;
 
 import org.json.JSONArray;
@@ -27,6 +32,8 @@ public class Constants {
     private static Map<String, String> titleAndIdMap = new HashMap<>();
 
 
+
+
     public String getApiKey()
     {
         return api_key;
@@ -45,11 +52,11 @@ public class Constants {
     }
 
     //get the new and upcoming movies data from this function
-    public String getMoviesData(String[] myUrl)
+    public String getMoviesData(String[] myUrl, Activity activity)
     {
         String result = "";
         //Instantiate new instance of our class
-        MyTask getRequest = new MyTask();
+        MyTask getRequest = new MyTask(activity);
         //Perform the doInBackground method, passing in our url
         try {
             result = getRequest.execute(myUrl).get();
@@ -62,9 +69,9 @@ public class Constants {
         return result;
     }
 
-    public void getConfiguration()
+    public void getConfiguration(Activity activity)
     {
-        String result = getMoviesData(getNewAndUpcomingMoviesUrl());
+        String result = getMoviesData(getNewAndUpcomingMoviesUrl(), activity);
         setMovieNames(getData(result)); // get the movie names in a string list and set the data to MovieNames
 
     }
@@ -114,6 +121,35 @@ public class Constants {
             e.printStackTrace();
         }
         return MovieNames;
+
+    }
+
+
+    public void sendData(String data, Activity activity, boolean isDialogFirstTimeCalled)
+    {
+
+        Dialog myDialog = new Dialog(activity);
+        TextView dialogue = (TextView) myDialog.findViewById(R.id.dialog);
+        if(isDialogFirstTimeCalled)
+        {
+//            myDialog.dismiss();
+        }
+
+        else if(data != "completed")
+        {
+
+            myDialog.setContentView(R.layout.dialog_box);
+            myDialog.setCancelable(true);
+            myDialog.setCanceledOnTouchOutside(true);
+            dialogue.setText(data);
+            myDialog.show();
+
+        }
+        else if(data == "completed")
+        {
+            dialogue.setText(data);
+            myDialog.dismiss();
+        }
 
     }
 }

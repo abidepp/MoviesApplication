@@ -1,5 +1,6 @@
 package com.example.userpc.myapplication;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.design.widget.NavigationView;
@@ -16,7 +17,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.userpc.myapplication.serviceClass.MyLocationService;
@@ -60,8 +64,10 @@ public class MainActivity extends BaseActivity{
 
         //to get the movie names when the application starts for search functionality
         Constants mConstants = new Constants();
-        mConstants.getConfiguration(); // call this before you call getMovieNames() for the movie names in search functionality
+        mConstants.getConfiguration(this); // call this before you call getMovieNames() for the movie names in search functionality
 
 
     }
+
+
 }

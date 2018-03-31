@@ -44,7 +44,7 @@ public class ReviewsActivity extends BaseActivity {
         String[] myUrl = new String[1];
         //Some url endpoint that you may have
         myUrl[0] = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + mConstants.getApiKey() + "&language=en-US&page=1";
-        String result = mConstants.getMoviesData(myUrl);
+        String result = mConstants.getMoviesData(myUrl, this);
 
         //get list for results to be populated in reviews activity
         List<Information> data = this.getData(result);
