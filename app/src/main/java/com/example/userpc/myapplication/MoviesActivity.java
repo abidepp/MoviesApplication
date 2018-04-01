@@ -74,14 +74,7 @@ public class MoviesActivity extends BaseActivity implements sendDataTOActivity{
         Log.i("test","this.getData(result)---->"+this.getData(result));
 
 
-        myadapterObject_upcoming = new MyAdapter(this, data.get(0),  new ItemClickListener(){
-
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        myadapterObject_upcoming = new MyAdapter(this, data.get(0));
 //        Log.i("test","data.get(0))---->"+data.get(0));
 
         LinearLayoutManager horizontalLayoutManager_upcoming = new LinearLayoutManager(MoviesActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -94,12 +87,7 @@ public class MoviesActivity extends BaseActivity implements sendDataTOActivity{
 
 
 
-        myadapterObject_nowPlaying = new MyAdapter(this, data.get(1), new ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-            }
-        });
+        myadapterObject_nowPlaying = new MyAdapter(this, data.get(1));
 
 //        Log.i("test","data.get(1))---->"+data.get(1));
 

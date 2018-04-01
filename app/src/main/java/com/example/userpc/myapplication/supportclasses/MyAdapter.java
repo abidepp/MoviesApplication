@@ -38,12 +38,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
     ItemClickListener clickListener;
     Context context;
 
-    public MyAdapter(Context context, List<Information> data, ItemClickListener clickListener)
+    public MyAdapter(Context context, List<Information> data)
     {
         inflater = LayoutInflater.from(context);
         this.data = data;
         this.context = context;
-        this.clickListener = clickListener; // to handle the recycler view onclick event
     }
 
 
@@ -56,20 +55,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
         final MyHolder holder = new MyHolder(view);
        // Log.i("Test","returned holder---->"+holder);
 
-        //to handle recycler view onItemClickListener
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickListener.onItemClick(v, holder.getPosition());
-            }
-        });
-
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(MyHolder holder, final int position) {
 
 
         Information current = new Information();
@@ -94,6 +84,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
         }
         holder.image.setImageBitmap(bmp);
 
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "position--->"+position, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 
 
@@ -105,7 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
 
 
-    class MyHolder extends RecyclerView.ViewHolder
+    class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
 
         ImageView image;
@@ -118,7 +115,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
             title = (TextView) itemView.findViewById(R.id.movieTitle);
             image = (ImageView) itemView.findViewById(R.id.movieImage);
             this.context = itemView.getContext();
+            image.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+
+        }
     }
 }
