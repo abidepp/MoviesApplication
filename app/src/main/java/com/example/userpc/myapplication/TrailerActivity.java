@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TrailerActivity extends AppCompatActivity {
 
-    Constants getKey = new Constants();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

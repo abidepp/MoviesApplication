@@ -105,7 +105,7 @@ public class MoviesActivity extends BaseActivity implements sendDataTOActivity{
 
     public void startTrailerActivityFromMoviesActivity(String movieID)
     {
-        Intent intent = new Intent(this, TrailerActivity.class);
+        Intent intent = new Intent(MoviesActivity.this, TrailerActivity.class);
         intent.putExtra("movieID", movieID);
         startActivity(intent);
     }
