@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.userpc.myapplication.supportclasses.Constants;
@@ -24,24 +25,26 @@ public class TrailerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trailer);
 
-        int data = getIntent().getIntExtra("movieId",-1);
-        Log.i("test", "position clicked-->"+data);
+        Toast.makeText(this, "TrailerActivity started and running", Toast.LENGTH_LONG).show();
 
-        VideoView videoView = (VideoView) findViewById(R.id.videoView);
-
-
-        //get MoviesActivity Object
-        MoviesActivity mMoviesActivity = new MoviesActivity();
-
-        String[] url = new String[1];
-        url[0] = "https://api.themoviedb.org/3/movie/157336/videos?api_key="+getKey.getApiKey()+"&language=en-US";// get the movie ID dynamically
-
-        Constants mConstants = new Constants();
-        String GetKey = mConstants.getMoviesData(url, this);
-
-        String trailerUrl = "https://www.youtube.com/watch?v="+GetKey;
-        videoView.setVideoPath(trailerUrl);
-        videoView.start();
+//        int data = getIntent().getIntExtra("movieId",-1);
+//        Log.i("test", "position clicked-->"+data);
+//
+//        VideoView videoView = (VideoView) findViewById(R.id.videoView);
+//
+//
+//        //get MoviesActivity Object
+//        MoviesActivity mMoviesActivity = new MoviesActivity();
+//
+//        String[] url = new String[1];
+//        url[0] = "https://api.themoviedb.org/3/movie/157336/videos?api_key="+getKey.getApiKey()+"&language=en-US";// get the movie ID dynamically
+//
+//        Constants mConstants = new Constants();
+//        String GetKey = mConstants.getMoviesData(url, this);
+//
+//        String trailerUrl = "https://www.youtube.com/watch?v="+GetKey;
+//        videoView.setVideoPath(trailerUrl);
+//        videoView.start();
 
     }
 

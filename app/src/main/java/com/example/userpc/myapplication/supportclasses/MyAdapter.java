@@ -1,6 +1,7 @@
 package com.example.userpc.myapplication.supportclasses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.userpc.myapplication.Interface.ItemClickListener;
+import com.example.userpc.myapplication.MoviesActivity;
 import com.example.userpc.myapplication.R;
+import com.example.userpc.myapplication.TrailerActivity;
 import com.example.userpc.myapplication.serviceClass.ImageLoadTask;
 import com.example.userpc.myapplication.serviceClass.MyTask;
 
@@ -22,6 +25,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -87,7 +92,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "position--->"+position, Toast.LENGTH_LONG).show();
+
+                String movieTitle = data.get(position).title;// get the movie title which is selected
+                String movieID = ""; //to get the movieID of the selected movie
+                Map<String, String> map = new HashMap<String, String>();
+
+                Constants constants = new Constants(); // to get the titlesAndID map for reference iteration here
+                map = constants.getTitleAndIdMap();
+
+                Iterator <Map.Entry<String,String>> iterator = map.entrySet().iterator();
+
+                while(iterator.hasNext())
+                {
+                    Map.Entry<String, String> entry = iterator.next();
+                    Log.i(""+entry.getKey(), ""+entry.getValue());
+                    Log.i("title"+movieTitle, ""+entry.getKey());
+//                    if(map.containsKey(movieTitle))
+//                    {
+//                        Toast.makeText(context, "success", Toast.LENGTH_LONG).show();
+//                    }
+                    String temp = entry.getKey();
+                    if(movieTitle.toString().trim() == temp.toString().trim())
+                    {
+                        movieID = entry.getValue();
+                        Log.i("movie id selected--->", ""+entry.getValue());
+                    }
+                }
+
+                if(movieID != "")
+                {
+                    MoviesActivity moviesActivity = new MoviesActivity();
+                    moviesActivity.startTrailerActivityFromMoviesActivity(movieID);
+                }
+                else
+                {
+                    Toast.makeText(context, "Oops! The trailer for the movie is not available", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -102,7 +143,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
 
 
-    class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    class MyHolder extends RecyclerView.ViewHolder
     {
 
         ImageView image;
@@ -115,12 +156,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
             title = (TextView) itemView.findViewById(R.id.movieTitle);
             image = (ImageView) itemView.findViewById(R.id.movieImage);
             this.context = itemView.getContext();
-            image.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-
         }
     }
 }
