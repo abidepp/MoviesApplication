@@ -129,7 +129,7 @@ public class Constants {
     {
 
         Dialog myDialog = new Dialog(activity);
-        TextView dialogue = (TextView) myDialog.findViewById(R.id.dialog);
+        TextView dialogue;
         if(isDialogFirstTimeCalled)
         {
 //            myDialog.dismiss();
@@ -141,13 +141,14 @@ public class Constants {
             myDialog.setContentView(R.layout.dialog_box);
             myDialog.setCancelable(true);
             myDialog.setCanceledOnTouchOutside(true);
-            dialogue.setText(data);
             myDialog.show();
+            dialogue = (TextView) myDialog.findViewById(R.id.dialog);
+            dialogue.setText(data);
 
         }
         else if(data == "completed")
         {
-            dialogue.setText(data);
+//            dialogue.setText(data);
             myDialog.dismiss();
         }
 

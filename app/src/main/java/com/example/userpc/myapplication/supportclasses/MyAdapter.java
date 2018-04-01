@@ -29,20 +29,21 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by user pc on 1/3/2018.
  */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
     private LayoutInflater inflater;
     List<Information> data = Collections.emptyList();
     List<Map> reviewsData = Collections.emptyList();
     Bitmap bmp = null;//for loading movie poster from imageLoadTask class
-    private ItemClickListener clickListener;
+    ItemClickListener clickListener;
     Context context;
 
-    public MyAdapter(Context context, List<Information> data)
+    public MyAdapter(Context context, List<Information> data, ItemClickListener clickListener)
     {
         inflater = LayoutInflater.from(context);
         this.data = data;
         this.context = context;
+        this.clickListener = clickListener; // to handle the recycler view onclick event
     }
 
 
@@ -52,8 +53,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
 
        // Log.i("Test","inside createViewHolder");
         View view = inflater.inflate(R.layout.movies_row_layout, parent, false);
-        MyHolder holder = new MyHolder(view);
+        final MyHolder holder = new MyHolder(view);
        // Log.i("Test","returned holder---->"+holder);
+
+        //to handle recycler view onItemClickListener
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onItemClick(v, holder.getPosition());
+            }
+        });
+
         return holder;
     }
 
@@ -82,6 +93,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
             e.printStackTrace();
         }
         holder.image.setImageBitmap(bmp);
+
     }
 
 
@@ -92,32 +104,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
     }
 
 
-    public void setClickListener(ItemClickListener itemClickListener)
-    {
-        this.clickListener = itemClickListener;
-    }
 
-
-    class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    class MyHolder extends RecyclerView.ViewHolder
     {
 
         ImageView image;
         TextView title;
+        Context context;
 
         public MyHolder(View itemView) {
             super(itemView);
 
             title = (TextView) itemView.findViewById(R.id.movieTitle);
             image = (ImageView) itemView.findViewById(R.id.movieImage);
+            this.context = itemView.getContext();
         }
 
-        @Override
-        public void onClick(View view) {
-            if(clickListener != null)
-            clickListener.onClick(view,getAdapterPosition());
-
-            Toast.makeText(context, "position clicked-->"+getAdapterPosition(),Toast.LENGTH_LONG).show();
-
-        }
     }
 }

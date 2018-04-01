@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.userpc.myapplication.Interface.ItemClickListener;
 import com.example.userpc.myapplication.Interface.sendDataTOActivity;
@@ -34,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-public class MoviesActivity extends BaseActivity implements ItemClickListener, sendDataTOActivity{
+public class MoviesActivity extends BaseActivity implements sendDataTOActivity{
 
     private MyAdapter myadapterObject_upcoming;
     private MyAdapter myadapterObject_nowPlaying;
@@ -73,7 +74,13 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
         Log.i("test","this.getData(result)---->"+this.getData(result));
 
 
-        myadapterObject_upcoming = new MyAdapter(this, data.get(0));
+        myadapterObject_upcoming = new MyAdapter(this, data.get(0),  new ItemClickListener(){
+
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        Log.i("test","data.get(0))---->"+data.get(0));
 
@@ -87,7 +94,12 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
 
 
 
-        myadapterObject_nowPlaying = new MyAdapter(this, data.get(1));
+        myadapterObject_nowPlaying = new MyAdapter(this, data.get(1), new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 //        Log.i("test","data.get(1))---->"+data.get(1));
 
@@ -98,6 +110,7 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
         recyclerView_nowplaying.setLayoutManager(horizontalLayoutManager_nowPlaying);
 
         //myadapterObject_nowPlaying.setClickListener(this); //how can you send activity context to ItemClickListener
+
 
 
     }
@@ -164,13 +177,7 @@ public class MoviesActivity extends BaseActivity implements ItemClickListener, s
 
 
 
-    @Override
-    public void onClick(View view, int position) {
 
-        Intent trailersActivity = new Intent(this,TrailerActivity.class);
-        trailersActivity.putExtra("movieId",position);
-        startActivity(trailersActivity);
-    }
 
     @Override
     public void sendData(String str) {
