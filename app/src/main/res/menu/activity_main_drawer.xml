@@ -4,19 +4,23 @@
     <item android:title="Contact Us">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/Home"
+                android:icon="@drawable/ic_chevron_right"
+                android:title="Home"/>
+            <item
+                android:id="@+id/reviews"
                 android:icon="@drawable/ic_chevron_right"
                 android:title="Reviews" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/movies"
                 android:icon="@drawable/ic_chevron_right"
                 android:title="Movies" />
             <item
                 android:id="@+id/nav_writeReview"
                 android:icon="@drawable/ic_chevron_right"
-                android:title="PostReview" />
+                android:title="WriteReview" />
             <item
-                android:id="@+id/nav_contactUs"
+                android:id="@+id/nav_About"
                 android:icon="@drawable/ic_chevron_right"
                 android:title="About" />
         </menu>

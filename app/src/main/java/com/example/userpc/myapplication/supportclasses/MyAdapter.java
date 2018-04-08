@@ -121,8 +121,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder>{
 
                 if(movieID != "")
                 {
-                    MoviesActivity moviesActivity = new MoviesActivity();
-                    moviesActivity.startTrailerActivityFromMoviesActivity(movieID);
+                    Log.i(movieID,"movieId");
+                    Intent intent = new Intent(context, TrailerActivity.class);
+                    intent.putExtra("movieID", movieID);
+                    context.startActivity(intent);
+//                    moviesActivity.startTrailerActivityFromMoviesActivity(movieID, context);
                 }
                 else
                 {

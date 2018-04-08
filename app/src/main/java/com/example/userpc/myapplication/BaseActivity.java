@@ -81,14 +81,14 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
 
 
-        if(item.getItemId() == R.id.nav_send)
+        if(item.getItemId() == R.id.movies)
         {
 
             Log.i("Activity started", "initiationg movies activity");
             Intent intent = new Intent(this, MoviesActivity.class);
             startActivity(intent);
         }
-        if(item.getItemId() == R.id.nav_share)
+        if(item.getItemId() == R.id.reviews)
         {
 
             Log.i("Activity started", "initiationg reviews activity");
@@ -101,6 +101,18 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             Log.i("Activity started", "initiationg writereviews activity");
             Intent intent = new Intent(this, WriteReviewActivity.class);
             startActivity(intent);
+        }
+        if(item.getItemId() == R.id.Home)
+        {
+
+            Log.i("Activity started", "initiationg Main activity");
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        if(item.getItemId() == R.id.nav_About)
+        {
+            Log.i("Activity started", "initiationg AboutUs activity");
+
         }
 
         return false;
