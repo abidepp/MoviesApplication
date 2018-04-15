@@ -25,6 +25,9 @@ import java.util.concurrent.ExecutionException;
 public class Constants {
 
     private final String api_key= "6c899bbd67713e8f2720b10f00b18807";
+    private final String request_token_url = "https://api.themoviedb.org/3/authentication/token/new?api_key=";
+    private final String session_url = "https://api.themoviedb.org/3/authentication/session/new?api_key="+getApiKey()+"&request_token=";
+    private final String authentication_url ="https://www.themoviedb.org/authenticate/";
     private final String configuration_image_url = "http://image.tmdb.org/t/p/w342";
     private String[] myUrl = {"https://api.themoviedb.org/3/movie/upcoming?api_key=" + getApiKey() + "&language=en-US&page=1",
                       "https://api.themoviedb.org/3/movie/now_playing?api_key="+ getApiKey() +"&language=en-US&page=1"};
@@ -32,7 +35,17 @@ public class Constants {
     private static Map<String, String> titleAndIdMap = new HashMap<>();
 
 
+    public String getAuthenticationUrl() {
+        return authentication_url;
+    }
 
+    public String getSession_url() {
+        return session_url;
+    }
+
+    public String getRequest_token_url(){
+        return request_token_url;
+    }
 
     public String getApiKey()
     {

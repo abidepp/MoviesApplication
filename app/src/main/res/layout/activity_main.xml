@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
+    <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/linearLayout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.example.userpc.myapplication.SlidingTabLayout
-            android:id="@+id/slidingTabLayout"
-            android:background="#8D6E63"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        </com.example.userpc.myapplication.SlidingTabLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v4.view.ViewPager>
-
-    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/login"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="212dp" />
+    </RelativeLayout>
 
 
 

@@ -148,19 +148,19 @@ public class TrailerActivity extends YouTubeBaseActivity implements YouTubePlaye
         @Override
         public void onPlaying() {
             // Called when playback starts, either due to user action or call to play().
-            showMessage("Playing");
+            showMessage("");
         }
 
         @Override
         public void onPaused() {
             // Called when playback is paused, either due to user action or call to pause().
-            showMessage("Paused");
+            showMessage("");
         }
 
         @Override
         public void onStopped() {
             // Called when playback stops for a reason other than being paused.
-            showMessage("Stopped");
+            showMessage("");
         }
 
         @Override
