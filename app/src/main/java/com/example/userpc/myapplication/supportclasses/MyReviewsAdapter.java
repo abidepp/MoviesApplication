@@ -32,12 +32,11 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.MyVi
     {
         inflater = LayoutInflater.from(context);
         this.data = data;
-
     }
 
     @Override
-    public MyViewHolderReviews onCreateViewHolder(ViewGroup parent, int viewType) {
-
+    public MyViewHolderReviews onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View myView = inflater.inflate(R.layout.reviews_row_layout,parent, false);
         MyViewHolderReviews holder = new MyViewHolderReviews(myView);
         return holder;

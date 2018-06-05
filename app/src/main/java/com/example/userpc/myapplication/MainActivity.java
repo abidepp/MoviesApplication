@@ -150,22 +150,23 @@ public class MainActivity extends BaseActivity{
 
     public void userAuthentication()
     {
+        Log.i("MoviesApp","inside userAuthentication---->");
         mConstants = new Constants();
         JsonURL[0] = mConstants.getRequest_token_url()+mConstants.getApiKey();
-        Log.i("request_url","request_url---->"+JsonURL[0]);
+        Log.i("MoviesApp","request_url---->"+JsonURL[0]);
 
 
         //to get the request token and session id
         //getVolleyService(this, "request_token");
         String token_response = mConstants.getMoviesData(JsonURL,this);
         String request_token = getData(token_response, "request_token");
-        Log.i("request_token", "request_token"+request_token);
+        Log.i("MoviesApp", "request_token"+request_token);
         if(request_token != "")
         {
             String[] authentication_url = new String[1];
             authentication_url[0] = mConstants.getAuthenticationUrl()+request_token;
             String authentication_response = mConstants.getMoviesData(authentication_url,this);
-            Log.i("authentication_response","authentication_response"+authentication_response);
+            //Log.i("MoviesApp","authentication_response"+authentication_response);
 
             Intent webViewIntent = new Intent(this, BrowserActivity.class);
             webViewIntent.putExtra("authenticate",authentication_response);
@@ -179,7 +180,7 @@ public class MainActivity extends BaseActivity{
         }
         else
         {
-            Toast.makeText(this,"could not create session for the user",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"could not create session for the user--->request_token is"+request_token,Toast.LENGTH_SHORT).show();
         }
 
     }
