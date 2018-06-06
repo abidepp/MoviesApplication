@@ -165,18 +165,10 @@ public class MainActivity extends BaseActivity{
         {
             String[] authentication_url = new String[1];
             authentication_url[0] = mConstants.getAuthenticationUrl()+request_token;
-            String authentication_response = mConstants.getMoviesData(authentication_url,this);
-            //Log.i("MoviesApp","authentication_response"+authentication_response);
 
             Intent webViewIntent = new Intent(this, BrowserActivity.class);
-            webViewIntent.putExtra("authenticate",authentication_response);
+            webViewIntent.putExtra("authenticate",authentication_url[0]);
             startActivity(webViewIntent);
-//            String[] session_url = new String[1];
-//            session_url[0] = mConstants.getSession_url()+request_token;
-//            Log.i("session_url","session_url---->"+session_url[0]);
-//            String session_response = mConstants.getMoviesData(session_url,this);
-//            String session_id = getData(session_response, "session_id");
-//            Log.i("session_id", "session_id"+session_id);
         }
         else
         {
